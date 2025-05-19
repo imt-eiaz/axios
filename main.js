@@ -1,4 +1,4 @@
-//Get Request by Axios();
+//Get Request by Axios(); (to see of view)
 function getTodos() {
   //   axios({
   //     method: "get",
@@ -16,8 +16,19 @@ function getTodos() {
     .catch((err) => console.error(err));
 }
 
-// Post Request
+// Post Request (to create or insert)
 function addTodo() {
+  axios
+    .post("https://jsonplaceholder.typicode.com/todos", {
+      title: "New Todo",
+      completed: false,
+    })
+    .then((res) => showOutput(res))
+    .catch((err) => console.log(err));
+}
+
+// Put/Patch Request (to update)
+function updateTodo() {
   axios
     .post("https://jsonplaceholder.typicode.com/todos", {
       title: "New Todo",
@@ -65,5 +76,13 @@ function showOutput(res) {
 
 // Event listeners
 document.getElementById("get").addEventListener("click", getTodos);
-
 document.getElementById("post").addEventListener("click", addTodo);
+document.getElementById("update").addEventListener("click", updateTodo);
+document.getElementById("delete").addEventListener("click", removeTodo);
+document.getElementById("sim").addEventListener("click", getData);
+document.getElementById("headers").addEventListener("click", customHeaders);
+document
+  .getElementById("transform")
+  .addEventListener("click", transformResponse);
+document.getElementById("error").addEventListener("click", errorHandling);
+document.getElementById("cancel").addEventListener("click", cancelToken);
