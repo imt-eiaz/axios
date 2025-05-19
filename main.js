@@ -27,13 +27,23 @@ function addTodo() {
     .catch((err) => console.log(err));
 }
 
-// Put/Patch Request (to update)
+// Put/Patch Request (to update) (Patch genereally recommended because it only updates and the Put usually replace the whole record)
+
 function updateTodo() {
   axios
-    .post("https://jsonplaceholder.typicode.com/todos", {
-      title: "New Todo",
-      completed: false,
+    .patch("https://jsonplaceholder.typicode.com/todos/1", {
+      title: "Updated Todo",
+      completed: true,
     })
+    .then((res) => showOutput(res))
+    .catch((err) => console.log(err));
+}
+
+// Delete Request (to delete)
+
+function removeTodo() {
+  axios
+    .delete("https://jsonplaceholder.typicode.com/todos/1")
     .then((res) => showOutput(res))
     .catch((err) => console.log(err));
 }
@@ -79,10 +89,10 @@ document.getElementById("get").addEventListener("click", getTodos);
 document.getElementById("post").addEventListener("click", addTodo);
 document.getElementById("update").addEventListener("click", updateTodo);
 document.getElementById("delete").addEventListener("click", removeTodo);
-document.getElementById("sim").addEventListener("click", getData);
-document.getElementById("headers").addEventListener("click", customHeaders);
-document
-  .getElementById("transform")
-  .addEventListener("click", transformResponse);
-document.getElementById("error").addEventListener("click", errorHandling);
-document.getElementById("cancel").addEventListener("click", cancelToken);
+// document.getElementById("sim").addEventListener("click", getData);
+// document.getElementById("headers").addEventListener("click", customHeaders);
+// document
+//   .getElementById("transform")
+//   .addEventListener("click", transformResponse);
+// document.getElementById("error").addEventListener("click", errorHandling);
+// document.getElementById("cancel").addEventListener("click", cancelToken);
